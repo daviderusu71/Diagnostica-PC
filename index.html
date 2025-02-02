@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnosticare PC</title>
+    <script src="https://js.stripe.com/v3/"></script>
+    <link rel="icon" href="data:,">
+
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f4; }
+        .container { max-width: 600px; margin: 50px auto; padding: 20px; background: white; border: 1px solid #ccc; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 5px; }
+        button:hover { background-color: #0056b3; }
+        #solutie { margin-top: 20px; font-weight: bold; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Diagnosticare și Reparare PC</h2>
+        <p>Selectează problema:</p>
+        <button onclick="diagnostic('pornire')">PC-ul nu pornește</button>
+        <button onclick="diagnostic('internet')">Probleme cu internetul</button>
+        <button onclick="diagnostic('lent')">PC-ul merge greu</button>
+        <button onclick="diagnostic('supraincalzire')">PC-ul se supraîncălzește</button>
+        <button onclick="diagnostic('eroare_sistem')">Erori de sistem</button>
+        <p id="solutie"></p>
+        <a id="ghid" class="hidden" href="#" target="_blank">Vezi ghid detaliat</a>
+    </div>
+    
+    
+
+    <script>
+        function diagnostic(problema) {
+            let solutie = '';
+            let ghidLink = '';
+
+            switch(problema) {
+                case 'pornire':
+                    solutie = 'Verifică conexiunea la priză și apasă butonul de pornire.';
+                    ghidLink = 'https://www.youtube.com/results?search_query=PC+nu+porne%C8%99te';
+                    break;
+                case 'internet':
+                    solutie = 'Repornește routerul și verifică setările de rețea.';
+                    ghidLink = 'https://www.youtube.com/results?search_query=Probleme+cu+internetul';
+                    break;
+                case 'lent':
+                    solutie = 'Curăță fișierele temporare și dezinstalează programele inutile.';
+                    ghidLink = 'https://www.youtube.com/results?search_query=PC+merge+greu';
+                    break;
+                case 'supraincalzire':
+                    solutie = 'Curăță ventilatoarele și verifică pasta termoconductoare a procesorului.';
+                    ghidLink = 'https://www.youtube.com/results?search_query=PC+se+supra%C3%AEnc%C4%83lze%C8%99te';
+                    break;
+                case 'eroare_sistem':
+                    solutie = 'Rulează un scan pentru fișiere corupte și reinstalează driverele.';
+                    ghidLink = 'https://www.youtube.com/results?search_query=Erori+de+sistem+Windows';
+                    break;
+                default:
+                    solutie = 'Selectează o problemă validă.';
+            }
+            
+            document.getElementById('solutie').innerText = solutie;
+            let ghidElement = document.getElementById('ghid');
+            if (ghidLink) {
+                ghidElement.href = ghidLink;
+                ghidElement.classList.remove('hidden');
+            } else {
+                ghidElement.classList.add('hidden');
+            }
+        }
+    </script>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="./script.js"></script>
+    <script src="./server.js"></script>
+
+    
+      
+    
+</body>
+</html>
